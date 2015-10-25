@@ -12,6 +12,12 @@ libraryDependencies ++= Seq(
   javaWs
 )
 
+libraryDependencies += "info.cukes" % "cucumber-java" % "1.2.4" % "test"
+libraryDependencies += "info.cukes" % "cucumber-junit" % "1.2.4" % "test"
+
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
 routesGenerator := InjectedRoutesGenerator
+
+//play.Project.playJavaSettings
+unmanagedResourceDirectories in Test <+= baseDirectory( _ / "resources/features" )
