@@ -1,13 +1,11 @@
-import org.junit.*;
+package com.prunatic.pills.infrastructure.http.mvc.controllers;
 
-import play.mvc.*;
-import play.test.*;
-import play.libs.F.*;
+import org.junit.Test;
+import play.libs.F.Callback;
+import play.test.TestBrowser;
 
+import static org.junit.Assert.assertTrue;
 import static play.test.Helpers.*;
-import static org.junit.Assert.*;
-
-import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 public class IntegrationTest {
 

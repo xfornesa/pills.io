@@ -1,3 +1,5 @@
+package com.prunatic.pills.infrastructure.http.mvc.controllers;
+
 import org.junit.Test;
 import play.twirl.api.Content;
 
