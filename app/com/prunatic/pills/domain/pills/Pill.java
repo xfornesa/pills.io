@@ -3,6 +3,7 @@ package com.prunatic.pills.domain.pills;
 /**
  */
 public class Pill {
+    private PillId pillId;
     private String title;
     private String content;
 
@@ -26,7 +27,7 @@ public class Pill {
         }
         final Pill otherPill = (Pill) other;
 
-        return this.title.equals(otherPill.title);
+        return this.pillId.equals(otherPill.pillId);
     }
 
     @Override
