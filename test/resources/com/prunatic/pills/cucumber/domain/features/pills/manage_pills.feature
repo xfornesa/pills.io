@@ -1,8 +1,7 @@
 Feature: Manage pills available within the system
 
-
   Scenario: Add pill to system
-    Given the following pills:
+    Given the following pills collection:
       | title                   | content             |
       | first pill of knowledge | Content of the pill |
     When I get all the pills

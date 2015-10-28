@@ -1,5 +1,7 @@
 package com.prunatic.pills.cucumber.domain.pills;
 
+import com.prunatic.pills.domain.pills.Pill;
+import com.prunatic.pills.domain.pills.PillsCollection;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -12,13 +14,13 @@ import java.util.Map;
 /**
  */
 public class PillsSteps {
-    @Given("^the following pills:$")
-    public void the_following_pills(List<Map<String, String>> rows) throws Throwable {
+    private PillsCollection pillsCollection;
+
+    @Given("^the following pills collection:$")
+    public void addPillsToCollection(List<Map<String, String>> rows) throws Throwable {
         rows.parallelStream()
-                .forEach(row -> {
-                    System.out.println(String.format("Adding pill titled '%s' with content '%s'", row.get("title"), row.get("content")));
-                });
-        throw new PendingException();
+            .map(row -> Pill.fromContent(row.get("title"), row.get("content")))
+            .forEach(pillsCollection::add);
     }
 
     @When("^I get all the pills$")
