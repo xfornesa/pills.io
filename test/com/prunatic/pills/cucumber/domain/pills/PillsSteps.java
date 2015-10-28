@@ -1,5 +1,6 @@
 package com.prunatic.pills.cucumber.domain.pills;
 
+import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillsCollection;
 import cucumber.api.DataTable;
@@ -15,6 +16,10 @@ import java.util.Map;
  */
 public class PillsSteps {
     private PillsCollection pillsCollection;
+
+    public PillsSteps() {
+        pillsCollection = new InMemoryPillsCollection();
+    }
 
     @Given("^the following pills collection:$")
     public void addPillsToCollection(List<Map<String, String>> rows) throws Throwable {
