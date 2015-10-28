@@ -3,11 +3,10 @@ package com.prunatic.pills.cucumber.domain.pills;
 import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillsCollection;
-import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 
 import java.util.List;
 import java.util.Map;
@@ -35,11 +34,11 @@ public class PillsSteps {
     }
 
     @Then("^I found the following pills:$")
-    public void i_found_the_following_pills(DataTable data) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
-        // E,K,V must be a scalar (String, Integer, Date, enum etc)
-        throw new PendingException();
+    public void checkPillsList(List<String> rows) throws Throwable {
+        for (String pillTitle: rows) {
+            final boolean found = pills.parallelStream()
+                    .anyMatch(pill -> pillTitle.equals(pill.getTitle()));
+            Assert.assertTrue(String.format("Have not found any pill titled '%s'", pillTitle), found);
+        }
     }
 }

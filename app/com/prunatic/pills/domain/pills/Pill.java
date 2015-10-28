@@ -14,4 +14,8 @@ public class Pill {
         result.content = content;
         return result;
     }
+
+    public String getTitle() {
+        return title;
+    }
 }
