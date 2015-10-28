@@ -20,9 +20,19 @@ public class InMemoryPillsCollectionTest {
     }
 
     @Test
-    public void shouldBeEmptyByDefault() throws Exception {
+    public void shouldBeEmptyByDefault() {
         boolean isEmpty = sut.findAll().isEmpty();
 
         Assert.assertTrue("Should be empty by default", isEmpty);
+    }
+
+    @Test
+    public void shouldHaveOneElementWhenPillIsAdded() {
+        Pill pill = Pill.fromContent("aTitle", "someContent");
+
+        sut.add(pill);
+
+        long count = sut.findAll().parallelStream().count();
+        Assert.assertEquals(1, count);
     }
 }
