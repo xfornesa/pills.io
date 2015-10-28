@@ -18,4 +18,22 @@ public class Pill {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Pill)) {
+            return false;
+        }
+        final Pill otherPill = (Pill) other;
+
+        return this.title.equals(otherPill.title);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 11;
+        result = 31 * result + title.hashCode();
+
+        return result;
+    }
 }
