@@ -16,6 +16,7 @@ import java.util.Map;
  */
 public class PillsSteps {
     private PillsCollection pillsCollection;
+    private List<Pill> pills;
 
     public PillsSteps() {
         pillsCollection = new InMemoryPillsCollection();
@@ -29,9 +30,8 @@ public class PillsSteps {
     }
 
     @When("^I get all the pills$")
-    public void i_get_all_the_pills() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void getPills() throws Throwable {
+        pills = pillsCollection.findAll();
     }
 
     @Then("^I found the following pills:$")
