@@ -1,5 +1,12 @@
 # Pills.io
 
+**Improve your skills** with pills.io
+
+**Subscribe to any of the available topics** and receive profitable small pills of knowledge into your email.
+
+Completing the survey which accompanies each pill, you can **track your progress** in each topic journey.
+
+You define how fast do you want to complete that journey.
 
 ## Tests
 
