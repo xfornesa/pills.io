@@ -25,8 +25,12 @@ public class PillsSteps {
     @Given("^the following pills collection:$")
     public void addPillsToCollection(List<Map<String, String>> rows) throws Throwable {
         rows.parallelStream()
-            .map(row -> Pill.fromContent(row.get("id"), row.get("title"), row.get("content"), row.get("survey")))
+            .map(row -> createPillFromContent(row.get("id"), row.get("title"), row.get("content"), row.get("survey")))
             .forEach(pillsCollection::add);
+    }
+
+    private Pill createPillFromContent(String id, String title, String content, String survey) {
+        return Pill.fromContent(id, title, content, survey);
     }
 
     @When("^I get all the pills$")
@@ -39,9 +43,12 @@ public class PillsSteps {
         rows.parallelStream()
             .map(PillId::fromString)
             .forEach(pillId -> {
-                final boolean found = pills.parallelStream()
-                        .anyMatch(pill -> pillId.equals(pill.getId()));
+                final boolean found = checkPillExists(pillId);
                 Assert.assertTrue(String.format("Have not found any pill with id '%s'", pillId), found);
             });
+    }
+
+    private boolean checkPillExists(PillId pillId) {
+        return pills.parallelStream().anyMatch(pill -> pillId.equals(pill.getId()));
     }
 }
