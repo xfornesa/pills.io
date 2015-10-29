@@ -2,6 +2,7 @@ package com.prunatic.pills.cucumber.domain.pills;
 
 import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
+import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.pills.PillsCollection;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -35,10 +36,12 @@ public class PillsSteps {
 
     @Then("^I found the following pills:$")
     public void checkPillsList(List<String> rows) throws Throwable {
-        for (String pillTitle: rows) {
-            final boolean found = pills.parallelStream()
-                    .anyMatch(pill -> pillTitle.equals(pill.getTitle()));
-            Assert.assertTrue(String.format("Have not found any pill titled '%s'", pillTitle), found);
-        }
+        rows.parallelStream()
+            .map(PillId::fromString)
+            .forEach(pillId -> {
+                final boolean found = pills.parallelStream()
+                        .anyMatch(pill -> pillId.equals(pill.getId()));
+                Assert.assertTrue(String.format("Have not found any pill with id '%s'", pillId), found);
+            });
     }
 }

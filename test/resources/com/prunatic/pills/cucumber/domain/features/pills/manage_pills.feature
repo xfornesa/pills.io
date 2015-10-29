@@ -6,4 +6,4 @@ Feature: Manage pills available within the system
       | anId | first pill of knowledge | Content of the pill |
     When I get all the pills
     Then I found the following pills:
-      | first pill of knowledge |
+      | anId |

@@ -40,4 +40,8 @@ public class Pill {
 
         return result;
     }
+
+    public PillId getId() {
+        return pillId;
+    }
 }
