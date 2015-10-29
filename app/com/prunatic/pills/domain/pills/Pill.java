@@ -1,20 +1,24 @@
 package com.prunatic.pills.domain.pills;
 
+import com.prunatic.pills.domain.surveys.SurveyId;
+
 /**
  */
 public class Pill {
     private PillId pillId;
     private String title;
     private String content;
+    private SurveyId survey;
 
     private Pill() {}
 
-    public static Pill fromContent(String id, String title, String content) {
+    public static Pill fromContent(String id, String title, String content, String surveyId) {
         final Pill result = new Pill();
 
         result.pillId = PillId.fromString(id);
         result.title = title;
         result.content = content;
+        result.survey = SurveyId.fromString(surveyId);
 
         return result;
     }

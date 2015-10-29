@@ -1,4 +1,4 @@
-package com.prunatic.pills.domain.pills;
+package com.prunatic.pills.domain.surveys;
 
 import com.prunatic.pills.domain.entity.EntityId;
 
@@ -6,21 +6,21 @@ import java.util.UUID;
 
 /**
  */
-public class PillId implements EntityId {
+public class SurveyId implements EntityId {
 
     private String id;
 
-    private PillId() {}
+    private SurveyId() {}
 
-    static public PillId generate() {
-        PillId result = new PillId();
+    static public SurveyId generate() {
+        SurveyId result = new SurveyId();
         result.id = UUID.randomUUID().toString();
 
         return result;
     }
 
-    public static PillId fromString(String id) {
-        PillId result = new PillId();
+    public static SurveyId fromString(String id) {
+        SurveyId result = new SurveyId();
         result.id = id;
 
         return result;
@@ -28,12 +28,12 @@ public class PillId implements EntityId {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof PillId)) {
+        if (!(other instanceof SurveyId)) {
             return false;
         }
-        final PillId otherPillId = (PillId) other;
+        final SurveyId otherSurveyId = (SurveyId) other;
 
-        return this.id.equals(otherPillId.id);
+        return this.id.equals(otherSurveyId.id);
     }
 
     @Override
