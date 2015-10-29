@@ -8,7 +8,7 @@ import java.util.UUID;
  */
 public class PillId implements EntityId {
 
-    private UUID id;
+    private String id;
 
     private PillId() {}
 
@@ -32,13 +32,20 @@ public class PillId implements EntityId {
 
     static public PillId generate() {
         PillId result = new PillId();
-        result.id = UUID.randomUUID();
+        result.id = UUID.randomUUID().toString();
 
         return result;
     }
 
     @Override
     public String toString() {
-        return id.toString();
+        return id;
+    }
+
+    public static PillId fromString(String id) {
+        PillId result = new PillId();
+        result.id = id;
+
+        return result;
     }
 }

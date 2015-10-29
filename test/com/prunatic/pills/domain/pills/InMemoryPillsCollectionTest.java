@@ -49,6 +49,6 @@ public class InMemoryPillsCollectionTest {
     }
 
     private Pill givenSomePill() {
-        return Pill.fromContent("aTitle", "someContent");
+        return Pill.fromContent("anId", "aTitle", "someContent");
     }
 }

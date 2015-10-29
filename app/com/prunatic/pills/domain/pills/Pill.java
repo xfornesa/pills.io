@@ -9,10 +9,10 @@ public class Pill {
 
     private Pill() {}
 
-    public static Pill fromContent(String title, String content) {
+    public static Pill fromContent(String id, String title, String content) {
         final Pill result = new Pill();
 
-        result.pillId = PillId.generate();
+        result.pillId = PillId.fromString(id);
         result.title = title;
         result.content = content;
 

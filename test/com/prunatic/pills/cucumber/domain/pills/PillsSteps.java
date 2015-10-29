@@ -24,7 +24,7 @@ public class PillsSteps {
     @Given("^the following pills collection:$")
     public void addPillsToCollection(List<Map<String, String>> rows) throws Throwable {
         rows.parallelStream()
-            .map(row -> Pill.fromContent(row.get("title"), row.get("content")))
+            .map(row -> Pill.fromContent(row.get("id"), row.get("title"), row.get("content")))
             .forEach(pillsCollection::add);
     }
 
