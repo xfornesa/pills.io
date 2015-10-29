@@ -15,10 +15,6 @@ public class InMemoryPillsCollectionTest {
         sut = createAnEmptyCollection();
     }
 
-    private InMemoryPillsCollection createAnEmptyCollection() {
-        return new InMemoryPillsCollection();
-    }
-
     @Test
     public void shouldBeEmptyByDefault() {
         boolean isEmpty = sut.findAll().isEmpty();
@@ -46,6 +42,10 @@ public class InMemoryPillsCollectionTest {
                 .anyMatch(actual -> actual.equals(pill));
 
         Assert.assertTrue(found);
+    }
+
+    private InMemoryPillsCollection createAnEmptyCollection() {
+        return new InMemoryPillsCollection();
     }
 
     private Pill givenSomePill() {
