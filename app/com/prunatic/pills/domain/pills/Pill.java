@@ -11,8 +11,11 @@ public class Pill {
 
     public static Pill fromContent(String title, String content) {
         final Pill result = new Pill();
+
+        result.pillId = PillId.generate();
         result.title = title;
         result.content = content;
+
         return result;
     }
 

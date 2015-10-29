@@ -2,11 +2,15 @@ package com.prunatic.pills.domain.pills;
 
 import com.prunatic.pills.domain.entity.EntityId;
 
+import java.util.UUID;
+
 /**
  */
 public class PillId implements EntityId {
 
-    private String id;
+    private UUID id;
+
+    private PillId() {}
 
     @Override
     public boolean equals(Object other) {
@@ -24,5 +28,17 @@ public class PillId implements EntityId {
         result = 31 * result + id.hashCode();
 
         return result;
+    }
+
+    static public PillId generate() {
+        PillId result = new PillId();
+        result.id = UUID.randomUUID();
+
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return id.toString();
     }
 }
