@@ -1,5 +1,6 @@
 package com.prunatic.pills.cucumber.domain.pills;
 
+import com.prunatic.pills.domain.command.pill.AddPillCommand;
 import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillId;
@@ -15,22 +16,24 @@ import java.util.Map;
 /**
  */
 public class PillsSteps {
-    private PillsCollection pillsCollection;
+    private final PillsCollection pillsCollection;
+    private final AddPillCommand addPillCommand;
+
     private List<Pill> pills;
 
     public PillsSteps() {
         pillsCollection = new InMemoryPillsCollection();
+        addPillCommand = new AddPillCommand(pillsCollection);
     }
 
     @Given("^the following pills collection:$")
     public void addPillsToCollection(List<Map<String, String>> rows) throws Throwable {
         rows.parallelStream()
-            .map(row -> createPillFromContent(row.get("id"), row.get("title"), row.get("content"), row.get("survey")))
-            .forEach(pillsCollection::add);
+            .forEach(row -> addPillFromContent(row.get("id"), row.get("title"), row.get("content"), row.get("survey")));
     }
 
-    private Pill createPillFromContent(String id, String title, String content, String survey) {
-        return Pill.fromContent(id, title, content, survey);
+    private void addPillFromContent(String id, String title, String content, String survey) {
+        addPillCommand.execute(id, title, content, survey);
     }
 
     @When("^I get all the pills$")
