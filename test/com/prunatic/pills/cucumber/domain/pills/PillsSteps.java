@@ -1,5 +1,6 @@
 package com.prunatic.pills.cucumber.domain.pills;
 
+import com.google.common.eventbus.EventBus;
 import com.prunatic.pills.domain.pills.command.AddPillCommand;
 import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
@@ -18,12 +19,14 @@ import java.util.Map;
 public class PillsSteps {
     private final PillsCollection pillsCollection;
     private final AddPillCommand addPillCommand;
+    private final EventBus eventBus;
 
     private List<Pill> pills;
 
     public PillsSteps() {
+        eventBus = new EventBus();
         pillsCollection = new InMemoryPillsCollection();
-        addPillCommand = new AddPillCommand(pillsCollection);
+        addPillCommand = new AddPillCommand(eventBus, pillsCollection);
     }
 
     @Given("^the following pills collection:$")

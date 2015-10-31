@@ -1,11 +1,12 @@
 package com.prunatic.pills.domain.pills.command;
 
+import com.google.common.eventbus.EventBus;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillsCollection;
+import com.prunatic.pills.domain.pills.event.PillAddedEvent;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -16,11 +17,13 @@ public class AddPillCommandTest {
 
     private AddPillCommand sut;
     private PillsCollection pillsCollection;
+    private EventBus eventBus;
 
     @Before
     public void setUp() throws Exception {
+        eventBus = mock(EventBus.class);
         pillsCollection = mock(PillsCollection.class);
-        sut = new AddPillCommand(pillsCollection);
+        sut = new AddPillCommand(eventBus, pillsCollection);
     }
 
     @Test
@@ -34,7 +37,7 @@ public class AddPillCommandTest {
     public void shouldRaisePillAddedEvent() {
         addSomePill();
 
-        fail("TODO add some event bus");
+        verify(eventBus).post(any(PillAddedEvent.class));
     }
 
     private void addSomePill() {

@@ -5,5 +5,5 @@ import org.joda.time.DateTime;
 /**
  */
 public interface Event {
-    public DateTime occurredOn();
+    public DateTime getOccurredOn();
 }
