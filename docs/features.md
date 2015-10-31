@@ -44,7 +44,7 @@ After an small event storming workshop, it has been identified the following top
  - CancelSubscription
  - AddTopic
  - RemoveTopic
- - AddPill
+ - ~~AddPill~~
  - RemovePill
  - AddPillToJourney
  - RemovePillFromJourney
