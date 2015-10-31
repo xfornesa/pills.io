@@ -13,7 +13,7 @@ public class PillAddedEvent implements Event {
 
     public PillAddedEvent(PillId pillId) {
         this.pillId = pillId;
-        occurredOn = DateTime.now();
+        this.occurredOn = DateTime.now();
     }
 
     @Override
