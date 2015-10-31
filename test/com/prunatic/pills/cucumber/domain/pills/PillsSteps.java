@@ -1,6 +1,6 @@
 package com.prunatic.pills.cucumber.domain.pills;
 
-import com.prunatic.pills.domain.command.pill.AddPillCommand;
+import com.prunatic.pills.domain.pills.command.AddPillCommand;
 import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillId;

@@ -1,6 +1,6 @@
 package com.prunatic.pills.domain.surveys;
 
-import com.prunatic.pills.domain.entity.EntityId;
+import com.prunatic.pills.domain.common.EntityId;
 
 import java.util.UUID;
 

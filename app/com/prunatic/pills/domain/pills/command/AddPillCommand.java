@@ -1,4 +1,4 @@
-package com.prunatic.pills.domain.command.pill;
+package com.prunatic.pills.domain.pills.command;
 
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillsCollection;
