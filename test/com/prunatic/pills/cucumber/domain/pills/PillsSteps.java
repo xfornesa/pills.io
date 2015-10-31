@@ -1,11 +1,13 @@
 package com.prunatic.pills.cucumber.domain.pills;
 
 import com.google.common.eventbus.EventBus;
-import com.prunatic.pills.domain.pills.command.AddPillCommand;
+import com.google.common.eventbus.Subscribe;
 import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.pills.PillsCollection;
+import com.prunatic.pills.domain.pills.command.AddPillCommand;
+import com.prunatic.pills.domain.pills.event.PillAddedEvent;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -22,6 +24,8 @@ public class PillsSteps {
     private final EventBus eventBus;
 
     private List<Pill> pills;
+    private PillAddedEventListener pillAddedEventListener;
+    private PillId addedPillId;
 
     public PillsSteps() {
         eventBus = new EventBus();
@@ -56,5 +60,31 @@ public class PillsSteps {
 
     private boolean checkPillExists(PillId pillId) {
         return pills.parallelStream().anyMatch(pill -> pillId.equals(pill.getId()));
+    }
+
+    @Given("^I am listening for a PillAddedEvent$")
+    public void addPillAddedEventListener() throws Throwable {
+        pillAddedEventListener = new PillAddedEventListener();
+        eventBus.register(pillAddedEventListener);
+    }
+
+    @When("^I add a pill$")
+    public void addSomePill() throws Throwable {
+        addedPillId = PillId.fromString("anId");
+        addPillFromContent(addedPillId.toString(), "someTitle", "someContent", "aSurveyId");
+    }
+
+    @Then("^I should receive a PillAddedEvent with its pillId$")
+    public void checkPillAddedEventReceived() throws Throwable {
+        Assert.assertTrue(addedPillId.equals(pillAddedEventListener.pillId));
+    }
+
+    private class PillAddedEventListener {
+        public PillId pillId;
+
+        @Subscribe
+        public void handle(PillAddedEvent event) {
+            pillId = event.getPillId();
+        }
     }
 }
