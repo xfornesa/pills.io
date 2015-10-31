@@ -13,12 +13,12 @@ public class AddPillCommand {
         this.pillsCollection = pillsCollection;
     }
 
-    public void execute(String id, String title, String content, String survey) {
-        Pill pill = createPill(id, title, content, survey);
+    public void execute(String id, String title, String content, String surveyId) {
+        Pill pill = createPill(id, title, content, surveyId);
         pillsCollection.add(pill);
     }
 
-    private Pill createPill(String id, String title, String content, String survey) {
-        return Pill.fromContent(id, title, content, survey);
+    private Pill createPill(String id, String title, String content, String surveyId) {
+        return Pill.fromContent(id, title, content, surveyId);
     }
 }

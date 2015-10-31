@@ -29,11 +29,11 @@ public class PillsSteps {
     @Given("^the following pills collection:$")
     public void addPillsToCollection(List<Map<String, String>> rows) throws Throwable {
         rows.parallelStream()
-            .forEach(row -> addPillFromContent(row.get("id"), row.get("title"), row.get("content"), row.get("survey")));
+            .forEach(row -> addPillFromContent(row.get("id"), row.get("title"), row.get("content"), row.get("surveyId")));
     }
 
-    private void addPillFromContent(String id, String title, String content, String survey) {
-        addPillCommand.execute(id, title, content, survey);
+    private void addPillFromContent(String id, String title, String content, String surveyId) {
+        addPillCommand.execute(id, title, content, surveyId);
     }
 
     @When("^I get all the pills$")
