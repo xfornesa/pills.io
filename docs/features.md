@@ -26,7 +26,7 @@ After an small event storming workshop, it has been identified the following top
  - User has cancelled his subscription to a topic => SubscriptionCancelled
  - A topic has been added => TopicAdded
  - An existing topic has been removed => TopicRemoved
- - A new pill has been added => PillAdded
+ - A new pill has been added => ~~PillAdded~~
  - An existing pill has been removed => PillRemoved
  - An existing pill has been added to topic journey => JourneyUpdated
  - A pill has been detached from a topic journey => JourneyUpdated
@@ -44,7 +44,7 @@ After an small event storming workshop, it has been identified the following top
  - CancelSubscription
  - AddTopic
  - RemoveTopic
- - AddPill
+ - ~~AddPill~~
  - RemovePill
  - AddPillToJourney
  - RemovePillFromJourney
@@ -62,7 +62,7 @@ After an small event storming workshop, it has been identified the following top
  
 ## Road map
 
-- [Pills] Add a pill to the system
+- ~~[Pills] Add a pill to the system~~
 - [Topics] Add a topic to the system
 - [Topics] Configure journey of a topic
 - [Subscriptions] Subscribe to topic
