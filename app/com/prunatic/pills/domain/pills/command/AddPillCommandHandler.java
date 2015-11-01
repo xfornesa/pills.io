@@ -17,8 +17,8 @@ public class AddPillCommandHandler {
         this.pillsCollection = pillsCollection;
     }
 
-    public void handle(String id, String title, String content, String surveyId) {
-        Pill pill = createPill(id, title, content, surveyId);
+    public void handle(AddPillCommand command) {
+        Pill pill = createPill(command.getId(), command.getTitle(), command.getContent(), command.getSurveyId());
         pillsCollection.add(pill);
         eventBus.post(new PillAddedEvent(pill.getId()));
     }

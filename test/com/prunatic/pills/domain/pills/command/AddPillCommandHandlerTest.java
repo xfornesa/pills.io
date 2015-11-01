@@ -55,7 +55,7 @@ public class AddPillCommandHandlerTest {
 
     private void addSomePill() {
         pillIdAdded = PillId.fromString("anId");
-        sut.handle(pillIdAdded.toString(), "aTitle", "someContent", "aSurveyId");
+        sut.handle(new AddPillCommand(pillIdAdded.toString(), "aTitle", "someContent", "aSurveyId"));
     }
 
     private class PillAddedEventHandler {

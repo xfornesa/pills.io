@@ -6,6 +6,7 @@ import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.pills.PillsCollection;
+import com.prunatic.pills.domain.pills.command.AddPillCommand;
 import com.prunatic.pills.domain.pills.command.AddPillCommandHandler;
 import com.prunatic.pills.domain.pills.event.PillAddedEvent;
 import cucumber.api.java.en.Given;
@@ -40,7 +41,7 @@ public class PillsSteps {
     }
 
     private void addPillFromContent(String id, String title, String content, String surveyId) {
-        addPillCommandHandler.handle(id, title, content, surveyId);
+        addPillCommandHandler.handle(new AddPillCommand(id, title, content, surveyId));
     }
 
     @When("^I get all the pills$")
