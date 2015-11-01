@@ -6,7 +6,7 @@ import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.pills.PillsCollection;
-import com.prunatic.pills.domain.pills.command.AddPillCommand;
+import com.prunatic.pills.domain.pills.command.AddPillCommandHandler;
 import com.prunatic.pills.domain.pills.event.PillAddedEvent;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class PillsSteps {
     private final PillsCollection pillsCollection;
-    private final AddPillCommand addPillCommand;
+    private final AddPillCommandHandler addPillCommandHandler;
     private final EventBus eventBus;
 
     private List<Pill> pills;
@@ -30,7 +30,7 @@ public class PillsSteps {
     public PillsSteps() {
         eventBus = new EventBus();
         pillsCollection = new InMemoryPillsCollection();
-        addPillCommand = new AddPillCommand(eventBus, pillsCollection);
+        addPillCommandHandler = new AddPillCommandHandler(eventBus, pillsCollection);
     }
 
     @Given("^the following pills collection:$")
@@ -40,7 +40,7 @@ public class PillsSteps {
     }
 
     private void addPillFromContent(String id, String title, String content, String surveyId) {
-        addPillCommand.execute(id, title, content, surveyId);
+        addPillCommandHandler.handle(id, title, content, surveyId);
     }
 
     @When("^I get all the pills$")

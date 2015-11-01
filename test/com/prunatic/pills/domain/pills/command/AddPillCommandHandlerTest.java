@@ -15,9 +15,9 @@ import static org.mockito.Mockito.*;
 
 /**
  */
-public class AddPillCommandTest {
+public class AddPillCommandHandlerTest {
 
-    private AddPillCommand sut;
+    private AddPillCommandHandler sut;
     private PillsCollection pillsCollection;
     private EventBus eventBus;
     private PillId pillIdAdded;
@@ -26,7 +26,7 @@ public class AddPillCommandTest {
     public void setUp() throws Exception {
         eventBus = spy(new EventBus());
         pillsCollection = mock(PillsCollection.class);
-        sut = new AddPillCommand(eventBus, pillsCollection);
+        sut = new AddPillCommandHandler(eventBus, pillsCollection);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class AddPillCommandTest {
 
     private void addSomePill() {
         pillIdAdded = PillId.fromString("anId");
-        sut.execute(pillIdAdded.toString(), "aTitle", "someContent", "aSurveyId");
+        sut.handle(pillIdAdded.toString(), "aTitle", "someContent", "aSurveyId");
     }
 
     private class PillAddedEventHandler {

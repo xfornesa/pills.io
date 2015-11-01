@@ -7,17 +7,17 @@ import com.prunatic.pills.domain.pills.event.PillAddedEvent;
 
 /**
  */
-public class AddPillCommand {
+public class AddPillCommandHandler {
 
     private final EventBus eventBus;
     private final PillsCollection pillsCollection;
 
-    public AddPillCommand(EventBus eventBus, PillsCollection pillsCollection) {
+    public AddPillCommandHandler(EventBus eventBus, PillsCollection pillsCollection) {
         this.eventBus = eventBus;
         this.pillsCollection = pillsCollection;
     }
 
-    public void execute(String id, String title, String content, String surveyId) {
+    public void handle(String id, String title, String content, String surveyId) {
         Pill pill = createPill(id, title, content, surveyId);
         pillsCollection.add(pill);
         eventBus.post(new PillAddedEvent(pill.getId()));
