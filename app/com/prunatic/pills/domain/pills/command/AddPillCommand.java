@@ -1,29 +1,31 @@
 package com.prunatic.pills.domain.pills.command;
 
-import com.google.common.eventbus.EventBus;
-import com.prunatic.pills.domain.pills.Pill;
-import com.prunatic.pills.domain.pills.PillsCollection;
-import com.prunatic.pills.domain.pills.event.PillAddedEvent;
-
-/**
- */
 public class AddPillCommand {
+    private final String id;
+    private final String title;
+    private final String content;
+    private final String surveyId;
 
-    private final EventBus eventBus;
-    private final PillsCollection pillsCollection;
-
-    public AddPillCommand(EventBus eventBus, PillsCollection pillsCollection) {
-        this.eventBus = eventBus;
-        this.pillsCollection = pillsCollection;
+    public AddPillCommand(String id, String title, String content, String surveyId) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.surveyId = surveyId;
     }
 
-    public void execute(String id, String title, String content, String surveyId) {
-        Pill pill = createPill(id, title, content, surveyId);
-        pillsCollection.add(pill);
-        eventBus.post(new PillAddedEvent(pill.getId()));
+    public String getId() {
+        return id;
     }
 
-    private Pill createPill(String id, String title, String content, String surveyId) {
-        return Pill.fromContent(id, title, content, surveyId);
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getSurveyId() {
+        return surveyId;
     }
 }
