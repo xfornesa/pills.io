@@ -24,7 +24,7 @@ After an small event storming workshop, it has been identified the following top
  - User' progress has been updated with survey results => UserProgressUpdated
  - User has completed the topic journey => JourneyCompleted
  - User has cancelled his subscription to a topic => SubscriptionCancelled
- - A topic has been added => TopicAdded
+ - A topic has been added => ~~TopicAdded~~
  - An existing topic has been removed => TopicRemoved
  - A new pill has been added => ~~PillAdded~~
  - An existing pill has been removed => PillRemoved
@@ -42,7 +42,7 @@ After an small event storming workshop, it has been identified the following top
  - CompleteSurvey
  - UpdateUserProgress
  - CancelSubscription
- - AddTopic
+ - ~~AddTopic~~
  - RemoveTopic
  - ~~AddPill~~
  - RemovePill
@@ -63,7 +63,7 @@ After an small event storming workshop, it has been identified the following top
 ## Road map
 
 - ~~[Pills] Add a pill to the system~~
-- [Topics] Add a topic to the system
+- ~~[Topics] Add a topic to the system~~
 - [Topics] Configure journey of a topic
 - [Subscriptions] Subscribe to topic
 - [Scheduler] Schedule pills to sent

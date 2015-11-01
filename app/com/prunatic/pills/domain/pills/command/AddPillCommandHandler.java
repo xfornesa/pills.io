@@ -18,12 +18,12 @@ public class AddPillCommandHandler {
     }
 
     public void handle(AddPillCommand command) {
-        Pill pill = createPill(command.getId(), command.getTitle(), command.getContent(), command.getSurveyId());
+        Pill pill = createPill(command);
         pillsCollection.add(pill);
         eventBus.post(new PillAddedEvent(pill.getId()));
     }
 
-    private Pill createPill(String id, String title, String content, String surveyId) {
-        return Pill.fromContent(id, title, content, surveyId);
+    private Pill createPill(AddPillCommand command) {
+        return Pill.fromContent(command.getId(), command.getTitle(), command.getContent(), command.getSurveyId());
     }
 }

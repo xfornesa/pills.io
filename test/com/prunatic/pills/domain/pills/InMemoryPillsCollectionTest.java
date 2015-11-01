@@ -29,7 +29,7 @@ public class InMemoryPillsCollectionTest {
         sut.add(pill);
 
         long count = sut.findAll().parallelStream().count();
-        Assert.assertEquals(1, count);
+        Assert.assertEquals("Should have one element when adding one pill", 1, count);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class InMemoryPillsCollectionTest {
         final boolean found = sut.findAll().parallelStream()
                 .anyMatch(actual -> actual.equals(pill));
 
-        Assert.assertTrue(found);
+        Assert.assertTrue("Should found the pill recently added", found);
     }
 
     private InMemoryPillsCollection createAnEmptyCollection() {
