@@ -7,7 +7,7 @@ import com.prunatic.pills.domain.topics.Topic;
 import com.prunatic.pills.domain.topics.TopicId;
 import com.prunatic.pills.domain.topics.TopicsCollection;
 import com.prunatic.pills.domain.topics.command.AddTopicCommand;
-import com.prunatic.pills.domain.topics.command.AddTopicCommandHandler;
+import com.prunatic.pills.application.topics.command.AddTopicCommandHandler;
 import com.prunatic.pills.domain.topics.event.TopicAddedEvent;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

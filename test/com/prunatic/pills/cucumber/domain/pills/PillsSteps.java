@@ -7,7 +7,7 @@ import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.pills.PillsCollection;
 import com.prunatic.pills.domain.pills.command.AddPillCommand;
-import com.prunatic.pills.domain.pills.command.AddPillCommandHandler;
+import com.prunatic.pills.application.pills.command.AddPillCommandHandler;
 import com.prunatic.pills.domain.pills.event.PillAddedEvent;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
