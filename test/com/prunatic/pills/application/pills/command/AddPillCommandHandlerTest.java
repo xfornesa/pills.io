@@ -1,10 +1,11 @@
-package com.prunatic.pills.domain.pills.command;
+package com.prunatic.pills.application.pills.command;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.pills.PillsCollection;
+import com.prunatic.pills.domain.pills.command.AddPillCommand;
 import com.prunatic.pills.domain.pills.event.PillAddedEvent;
 import org.junit.Assert;
 import org.junit.Before;
