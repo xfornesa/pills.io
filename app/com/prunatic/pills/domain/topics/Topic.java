@@ -2,6 +2,9 @@ package com.prunatic.pills.domain.topics;
 
 import com.prunatic.pills.domain.pills.PillId;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  */
 public class Topic {
@@ -56,5 +59,13 @@ public class Topic {
 
     public void addPillToJourney(PillId pillId) {
         journey.addPill(pillId);
+    }
+
+    public void addPillsToJourney(List<PillId> pillIds) {
+        journey.addPills(pillIds);
+    }
+
+    public List<PillId> getPillsInJourney() {
+        return new ArrayList<>(journey.getPills());
     }
 }

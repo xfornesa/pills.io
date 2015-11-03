@@ -8,6 +8,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 /**
  */
 public class JourneySteps {
@@ -33,9 +37,28 @@ public class JourneySteps {
         topic.addPillToJourney(pillId);
     }
 
+    @When("^I add the following pills to its journey:$")
+    public void addPillsToJourney(List<Map<String,String>> data) throws Throwable {
+        List<PillId> pillIds = data.stream()
+                .map(row -> {
+                    return PillId.fromString(row.get("pillId"));
+                })
+                .collect(Collectors.toList());
+        this.topic.addPillsToJourney(pillIds);
+    }
+
     @Then("^I will see that its journey is not empty$")
     public void assertTopicJourneyIsNotEmpty() throws Throwable {
         TopicJourney journey = topic.getJourney();
         Assert.assertFalse(journey.isEmpty());
+    }
+
+    @Then("^I will see the following ordered pills in its journey:$")
+    public void assertPillsOnJourney(List<String> data) throws Throwable {
+        List<PillId> expected = data.stream()
+                .map(PillId::fromString)
+                .collect(Collectors.toList());
+        List<PillId> actual = topic.getPillsInJourney();
+        Assert.assertEquals(expected, actual);
     }
 }

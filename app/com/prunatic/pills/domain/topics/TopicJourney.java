@@ -21,4 +21,12 @@ public class TopicJourney {
     public void addPill(PillId pillId) {
         pills.add(pillId);
     }
+
+    public void addPills(List<PillId> pillIds) {
+        pills.addAll(pillIds);
+    }
+
+    public List<PillId> getPills() {
+        return new ArrayList<>(pills);
+    }
 }
