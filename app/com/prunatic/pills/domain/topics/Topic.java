@@ -1,5 +1,7 @@
 package com.prunatic.pills.domain.topics;
 
+import com.prunatic.pills.domain.pills.PillId;
+
 /**
  */
 public class Topic {
@@ -50,5 +52,9 @@ public class Topic {
 
     public TopicJourney getJourney() {
         return journey;
+    }
+
+    public void addPillToJourney(PillId pillId) {
+        journey.addPill(pillId);
     }
 }
