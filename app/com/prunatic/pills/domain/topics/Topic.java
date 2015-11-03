@@ -6,8 +6,11 @@ public class Topic {
     private TopicId pillId;
     private String title;
     private String goals;
+    private TopicJourney journey;
 
-    private Topic() {}
+    private Topic() {
+        journey = new TopicJourney();
+    }
 
     public static Topic fromContent(String id, String title, String goals) {
         final Topic result = new Topic();
@@ -43,5 +46,9 @@ public class Topic {
 
     public TopicId getId() {
         return pillId;
+    }
+
+    public TopicJourney getJourney() {
+        return journey;
     }
 }
