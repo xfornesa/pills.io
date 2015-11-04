@@ -3,6 +3,8 @@ package com.prunatic.pills.cucumber.domain.topics;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.topics.Topic;
 import com.prunatic.pills.domain.topics.TopicJourney;
+import com.prunatic.pills.domain.topics.command.AddPillToJourneyCommand;
+import com.prunatic.pills.application.topics.command.AddPillToJourneyCommandHandler;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -16,8 +18,10 @@ import java.util.stream.Collectors;
  */
 public class JourneySteps {
     private Topic topic;
+    private AddPillToJourneyCommandHandler addPillToJourneyCommandHandler;
 
     public JourneySteps() {
+        addPillToJourneyCommandHandler = new AddPillToJourneyCommandHandler();
     }
 
     @Given("^a topic$")
@@ -34,7 +38,7 @@ public class JourneySteps {
     @When("^I add a pill to its journey$")
     public void addPillToJourney() throws Throwable {
         PillId pillId = PillId.generate();
-        topic.addPillToJourney(pillId);
+        addPillToJourneyCommandHandler.handle(new AddPillToJourneyCommand(topic, pillId));
     }
 
     @When("^I add the following pills to its journey:$")
