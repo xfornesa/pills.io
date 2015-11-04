@@ -22,14 +22,14 @@ After an small event storming workshop, it has been identified the following top
  - User has passed the survey => SurveyPassed
  - User has failed the survey => SurveyFailed
  - User' progress has been updated with survey results => UserProgressUpdated
- - User has completed the topic journey => JourneyCompleted
+ - User has completed the topic journey => UserJourneyCompleted
  - User has cancelled his subscription to a topic => SubscriptionCancelled
  - A topic has been added => ~~TopicAdded~~
  - An existing topic has been removed => TopicRemoved
  - A new pill has been added => ~~PillAdded~~
  - An existing pill has been removed => PillRemoved
- - An existing pill has been added to topic journey => JourneyUpdated
- - A pill has been detached from a topic journey => JourneyUpdated
+ - An existing pill has been added to topic journey => ~~PillAddedToJourney~~
+ - A pill has been detached from a topic journey => PillRemovedFromJourney
  
  commands:
  - CreateAccount
@@ -46,7 +46,8 @@ After an small event storming workshop, it has been identified the following top
  - RemoveTopic
  - ~~AddPill~~
  - RemovePill
- - AddPillToJourney
+ - ~~AddPillToJourney~~
+ - ~~AddPillsToJourney~~
  - RemovePillFromJourney
  
  aggregates:
@@ -64,7 +65,7 @@ After an small event storming workshop, it has been identified the following top
 
 - ~~[Pills] Add a pill to the system~~
 - ~~[Topics] Add a topic to the system~~
-- [Topics] Configure journey of a topic
+- ~~[Topics] Setting up the journey of a topic (adding pills) ~~
 - [Subscriptions] Subscribe to topic
 - [Scheduler] Schedule pills to sent
 - [Topics] Complete survey

@@ -64,7 +64,7 @@ public class TopicsSteps {
     }
 
     @Given("^I am listening for a TopicAddedEvent$")
-    public void addTopicAddedEventListener() throws Throwable {
+    public void registerTopicAddedEventListener() throws Throwable {
         topicAddedEventListener = new TopicAddedEventListener();
         eventBus.register(topicAddedEventListener);
     }
