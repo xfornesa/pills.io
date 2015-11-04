@@ -5,6 +5,7 @@ import com.prunatic.pills.domain.topics.Topic;
 import com.prunatic.pills.domain.topics.TopicJourney;
 import com.prunatic.pills.domain.topics.command.AddPillToJourneyCommand;
 import com.prunatic.pills.application.topics.command.AddPillToJourneyCommandHandler;
+import com.prunatic.pills.domain.topics.command.AddPillsToJourneyCommand;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -44,11 +45,9 @@ public class JourneySteps {
     @When("^I add the following pills to its journey:$")
     public void addPillsToJourney(List<Map<String,String>> data) throws Throwable {
         List<PillId> pillIds = data.stream()
-                .map(row -> {
-                    return PillId.fromString(row.get("pillId"));
-                })
+                .map(row -> PillId.fromString(row.get("pillId")))
                 .collect(Collectors.toList());
-        this.topic.addPillsToJourney(pillIds);
+        addPillToJourneyCommandHandler.handle(new AddPillsToJourneyCommand(topic, pillIds));
     }
 
     @Then("^I will see that its journey is not empty$")

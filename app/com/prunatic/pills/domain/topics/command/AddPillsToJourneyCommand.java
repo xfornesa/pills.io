@@ -3,22 +3,24 @@ package com.prunatic.pills.domain.topics.command;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.topics.Topic;
 
+import java.util.List;
+
 /**
  */
-public class AddPillToJourneyCommand {
+public class AddPillsToJourneyCommand {
     private final Topic topic;
-    private final PillId pillId;
+    private final List<PillId> pillIds;
 
-    public AddPillToJourneyCommand(Topic topic, PillId pillId) {
+    public AddPillsToJourneyCommand(Topic topic, List<PillId> pillIds) {
         this.topic = topic;
-        this.pillId = pillId;
+        this.pillIds = pillIds;
     }
 
     public Topic getTopic() {
         return topic;
     }
 
-    public PillId getPillId() {
-        return pillId;
+    public List<PillId> getPillIds() {
+        return pillIds;
     }
 }
