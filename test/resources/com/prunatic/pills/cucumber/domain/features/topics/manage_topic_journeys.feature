@@ -18,3 +18,9 @@ Feature: Setting up the journey for a topic
      Then I will see the following ordered pills in its journey:
       | firstPillId  |
       | secondPillId |
+
+
+  Scenario: Raise PillAddedToJourney event when adding a pill to a topic journey
+    Given I am listening for a PillAddedToJourney
+    When I add a pill to its journey
+    Then I should receive a PillAddedToJourney with its topicId and pillId
