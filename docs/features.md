@@ -28,7 +28,7 @@ After an small event storming workshop, it has been identified the following top
  - An existing topic has been removed => TopicRemoved
  - A new pill has been added => ~~PillAdded~~
  - An existing pill has been removed => PillRemoved
- - An existing pill has been added to topic journey => PillAddedToJourney
+ - An existing pill has been added to topic journey => ~~PillAddedToJourney~~
  - A pill has been detached from a topic journey => PillRemovedFromJourney
  
  commands:
@@ -65,7 +65,7 @@ After an small event storming workshop, it has been identified the following top
 
 - ~~[Pills] Add a pill to the system~~
 - ~~[Topics] Add a topic to the system~~
-- [Topics] Configure journey of a topic
+- ~~[Topics] Setting up the journey of a topic (adding pills) ~~
 - [Subscriptions] Subscribe to topic
 - [Scheduler] Schedule pills to sent
 - [Topics] Complete survey

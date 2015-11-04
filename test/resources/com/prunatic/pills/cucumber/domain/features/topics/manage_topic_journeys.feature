@@ -20,7 +20,7 @@ Feature: Setting up the journey for a topic
       | secondPillId |
 
 
-  Scenario: Raise PillAddedToJourney event when adding a pill to a topic journey
-    Given I am listening for a PillAddedToJourney
-    When I add a pill to its journey
-    Then I should receive a PillAddedToJourney with its topicId and pillId
+  Scenario: Raise PillAddedToJourneyEvent event when adding a pill to a topic journey
+    Given I am listening for a PillAddedToJourneyEvent
+    When I add a pill to a topic's journey
+    Then I should receive a PillAddedToJourneyEvent with its topicId and pillId

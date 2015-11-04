@@ -1,11 +1,15 @@
 package com.prunatic.pills.cucumber.domain.topics;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.prunatic.pills.application.topics.command.AddPillToJourneyCommandHandler;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.topics.Topic;
+import com.prunatic.pills.domain.topics.TopicId;
 import com.prunatic.pills.domain.topics.TopicJourney;
 import com.prunatic.pills.domain.topics.command.AddPillToJourneyCommand;
-import com.prunatic.pills.application.topics.command.AddPillToJourneyCommandHandler;
 import com.prunatic.pills.domain.topics.command.AddPillsToJourneyCommand;
+import com.prunatic.pills.domain.topics.event.PillAddedToJourneyEvent;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,14 +24,24 @@ import java.util.stream.Collectors;
 public class JourneySteps {
     private Topic topic;
     private AddPillToJourneyCommandHandler addPillToJourneyCommandHandler;
+    private PillAddedToJourneyListener pillAddedToJourneyListener;
+    private EventBus eventBus;
+    private PillId pillId;
 
     public JourneySteps() {
-        addPillToJourneyCommandHandler = new AddPillToJourneyCommandHandler();
+        eventBus = new EventBus();
+        addPillToJourneyCommandHandler = new AddPillToJourneyCommandHandler(eventBus);
     }
 
     @Given("^a topic$")
     public void createTopic() throws Throwable {
         this.topic = Topic.fromContent("aTopicId", "some title", "some goals");
+    }
+
+    @Given("^I am listening for a PillAddedToJourneyEvent$")
+    public void registerPillAddedToJourneyEventListener() throws Throwable {
+        pillAddedToJourneyListener = new PillAddedToJourneyListener();
+        eventBus.register(pillAddedToJourneyListener);
     }
 
     @Then("^I will see that its journey is empty$")
@@ -38,7 +52,7 @@ public class JourneySteps {
 
     @When("^I add a pill to its journey$")
     public void addPillToJourney() throws Throwable {
-        PillId pillId = PillId.generate();
+        pillId = PillId.generate();
         addPillToJourneyCommandHandler.handle(new AddPillToJourneyCommand(topic, pillId));
     }
 
@@ -48,6 +62,13 @@ public class JourneySteps {
                 .map(row -> PillId.fromString(row.get("pillId")))
                 .collect(Collectors.toList());
         addPillToJourneyCommandHandler.handle(new AddPillsToJourneyCommand(topic, pillIds));
+    }
+
+    @When("^I add a pill to a topic's journey$")
+    public void createTopicAndAddPillToJourney() throws Throwable {
+        createTopic();
+        pillId = PillId.generate();
+        addPillToJourneyCommandHandler.handle(new AddPillToJourneyCommand(topic, pillId));
     }
 
     @Then("^I will see that its journey is not empty$")
@@ -63,5 +84,22 @@ public class JourneySteps {
                 .collect(Collectors.toList());
         List<PillId> actual = topic.getPillsInJourney();
         Assert.assertEquals(expected, actual);
+    }
+
+    @Then("^I should receive a PillAddedToJourneyEvent with its topicId and pillId$")
+    public void checkPillAddedToJourneyEventReceived() throws Throwable {
+        Assert.assertTrue(topic.getId().equals(pillAddedToJourneyListener.topicId));
+        Assert.assertTrue(pillId.equals(pillAddedToJourneyListener.pillId));
+    }
+
+    private class PillAddedToJourneyListener {
+        public TopicId topicId;
+        public PillId pillId;
+
+        @Subscribe
+        public void handle(PillAddedToJourneyEvent event) {
+            topicId = event.getTopicId();
+            pillId = event.getPillId();
+        }
     }
 }
