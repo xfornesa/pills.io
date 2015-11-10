@@ -14,6 +14,7 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += "info.cukes" % "cucumber-java" % "1.2.4" % "test"
 libraryDependencies += "info.cukes" % "cucumber-junit" % "1.2.4" % "test"
+libraryDependencies += "info.cukes" % "cucumber-guice" % "1.2.4" % "test"
 libraryDependencies += "org.mockito" % "mockito-core" % "1.+" % "test"
 
 // Play provides two styles of routers, one expects its actions to be injected, the

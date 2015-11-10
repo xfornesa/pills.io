@@ -2,6 +2,7 @@ package com.prunatic.pills.cucumber.domain.topics;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import com.google.inject.Inject;
 import com.prunatic.pills.application.topics.command.AddPillToJourneyCommandHandler;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.topics.Topic;
@@ -13,6 +14,7 @@ import com.prunatic.pills.domain.topics.event.PillAddedToJourneyEvent;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.runtime.java.guice.ScenarioScoped;
 import org.junit.Assert;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 
 /**
  */
+@ScenarioScoped
 public class JourneySteps {
     private Topic topic;
     private AddPillToJourneyCommandHandler addPillToJourneyCommandHandler;
@@ -28,9 +31,13 @@ public class JourneySteps {
     private EventBus eventBus;
     private PillId pillId;
 
-    public JourneySteps() {
-        eventBus = new EventBus();
-        addPillToJourneyCommandHandler = new AddPillToJourneyCommandHandler(eventBus);
+    @Inject
+    public JourneySteps(
+            EventBus eventBus,
+            AddPillToJourneyCommandHandler addPillToJourneyCommandHandler
+    ) {
+        this.eventBus = eventBus;
+        this.addPillToJourneyCommandHandler = addPillToJourneyCommandHandler;
     }
 
     @Given("^a topic$")

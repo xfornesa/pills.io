@@ -2,6 +2,7 @@ package com.prunatic.pills.cucumber.domain.pills;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import com.google.inject.Inject;
 import com.prunatic.pills.domain.pills.InMemoryPillsCollection;
 import com.prunatic.pills.domain.pills.Pill;
 import com.prunatic.pills.domain.pills.PillId;
@@ -12,6 +13,7 @@ import com.prunatic.pills.domain.pills.event.PillAddedEvent;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.runtime.java.guice.ScenarioScoped;
 import org.junit.Assert;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 /**
  */
+@ScenarioScoped
 public class PillsSteps {
     private final PillsCollection pillsCollection;
     private final AddPillCommandHandler addPillCommandHandler;
@@ -28,10 +31,15 @@ public class PillsSteps {
     private PillAddedEventListener pillAddedEventListener;
     private PillId addedPillId;
 
-    public PillsSteps() {
-        eventBus = new EventBus();
-        pillsCollection = new InMemoryPillsCollection();
-        addPillCommandHandler = new AddPillCommandHandler(eventBus, pillsCollection);
+    @Inject
+    public PillsSteps(
+            EventBus eventBus,
+            PillsCollection pillsCollection,
+            AddPillCommandHandler addPillCommandHandler
+    ) {
+        this.eventBus = eventBus;
+        this.pillsCollection = pillsCollection;
+        this.addPillCommandHandler = addPillCommandHandler;
     }
 
     @Given("^the following pills collection:$")
