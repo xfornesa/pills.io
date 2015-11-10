@@ -2,6 +2,7 @@ package com.prunatic.pills.cucumber.domain.topics;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import com.google.inject.Inject;
 import com.prunatic.pills.domain.topics.InMemoryTopicsCollection;
 import com.prunatic.pills.domain.topics.Topic;
 import com.prunatic.pills.domain.topics.TopicId;
@@ -12,6 +13,7 @@ import com.prunatic.pills.domain.topics.event.TopicAddedEvent;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.runtime.java.guice.ScenarioScoped;
 import org.junit.Assert;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 /**
  */
+@ScenarioScoped
 public class TopicsSteps {
     private final TopicsCollection topicsCollection;
     private final AddTopicCommandHandler addTopicCommandHandler;
@@ -28,10 +31,15 @@ public class TopicsSteps {
     private TopicAddedEventListener topicAddedEventListener;
     private TopicId addedTopicId;
 
-    public TopicsSteps() {
-        eventBus = new EventBus();
-        topicsCollection = new InMemoryTopicsCollection();
-        addTopicCommandHandler = new AddTopicCommandHandler(eventBus, topicsCollection);
+    @Inject
+    public TopicsSteps(
+            EventBus eventBus,
+            TopicsCollection topicsCollection,
+            AddTopicCommandHandler addTopicCommandHandler
+    ) {
+        this.eventBus = eventBus;
+        this.topicsCollection = topicsCollection;
+        this.addTopicCommandHandler = addTopicCommandHandler;
     }
 
     @Given("^the following topics collection:$")

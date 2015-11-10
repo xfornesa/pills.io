@@ -1,6 +1,8 @@
 package com.prunatic.pills.application.topics.command;
 
 import com.google.common.eventbus.EventBus;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.prunatic.pills.application.common.CommandHandler;
 import com.prunatic.pills.domain.pills.PillId;
 import com.prunatic.pills.domain.topics.Topic;
@@ -10,9 +12,11 @@ import com.prunatic.pills.domain.topics.event.PillAddedToJourneyEvent;
 
 /**
  */
+@Singleton
 public class AddPillToJourneyCommandHandler implements CommandHandler {
     private final EventBus eventBus;
 
+    @Inject
     public AddPillToJourneyCommandHandler(EventBus eventBus) {
         this.eventBus = eventBus;
     }
