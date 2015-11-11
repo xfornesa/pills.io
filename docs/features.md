@@ -67,6 +67,7 @@ After an small event storming workshop, it has been identified the following top
 - ~~[Topics] Add a topic to the system~~
 - ~~[Topics] Setting up the journey of a topic (adding pills) ~~
 - [Subscriptions] Subscribe to topic
+- [Journey] User progress
 - [Scheduler] Schedule pills to sent
 - [Topics] Complete survey
 

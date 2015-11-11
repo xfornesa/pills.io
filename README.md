@@ -8,6 +8,10 @@ Completing the survey which accompanies each pill, you can **track your progress
 
 You define how fast do you want to complete that journey.
 
+## Other goals
+
+Create you own challenge, set a journey and check the steps progress with the survey completion.
+
 ## Tests
 
 ```bash
