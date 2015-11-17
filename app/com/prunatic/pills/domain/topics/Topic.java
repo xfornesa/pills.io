@@ -1,6 +1,7 @@
 package com.prunatic.pills.domain.topics;
 
 import com.prunatic.pills.domain.pills.PillId;
+import com.prunatic.pills.domain.users.UserId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  */
 public class Topic {
-    private TopicId pillId;
+    private TopicId topicId;
     private String title;
     private String goals;
     private TopicJourney journey;
@@ -20,7 +21,7 @@ public class Topic {
     public static Topic fromContent(String id, String title, String goals) {
         final Topic result = new Topic();
 
-        result.pillId = TopicId.fromString(id);
+        result.topicId = TopicId.fromString(id);
         result.title = title;
         result.goals = goals;
 
@@ -38,7 +39,7 @@ public class Topic {
         }
         final Topic otherTopic = (Topic) other;
 
-        return this.pillId.equals(otherTopic.pillId);
+        return this.topicId.equals(otherTopic.topicId);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class Topic {
     }
 
     public TopicId getId() {
-        return pillId;
+        return topicId;
     }
 
     public TopicJourney getJourney() {
@@ -67,5 +68,9 @@ public class Topic {
 
     public List<PillId> getPillsInJourney() {
         return new ArrayList<>(journey.getPills());
+    }
+
+    public Journey prepareJourneyFor(UserId userId) {
+        return Journey.fromSubscription(topicId, userId);
     }
 }
