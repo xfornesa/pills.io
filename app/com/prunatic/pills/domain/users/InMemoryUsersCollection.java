@@ -1,4 +1,4 @@
-package com.prunatic.pills.domain.topics;
+package com.prunatic.pills.domain.users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,20 +7,20 @@ import java.util.stream.Collectors;
 
 /**
  */
-public class InMemoryTopicsCollection implements TopicsCollection {
-    private ArrayList<Topic> data;
+public class InMemoryUsersCollection implements UsersCollection {
+    private ArrayList<User> data;
 
-    public InMemoryTopicsCollection() {
+    public InMemoryUsersCollection() {
         this.data = new ArrayList<>();
     }
 
     @Override
-    public void add(Topic topic) {
-        this.data.add(topic);
+    public void add(User user) {
+        this.data.add(user);
     }
 
     @Override
-    public List<Topic> findAll() {
+    public List<User> findAll() {
         return this.data
                 .parallelStream()
                 .collect(Collectors.toList())
@@ -28,10 +28,10 @@ public class InMemoryTopicsCollection implements TopicsCollection {
     }
 
     @Override
-    public Optional<Topic> findById(TopicId topicId) {
+    public Optional<User> findById(UserId userId) {
         return this.data
                 .parallelStream()
-                .filter(topic -> topic.getId().equals(topicId))
+                .filter(user -> user.getId().equals(userId))
                 .findFirst();
     }
 }

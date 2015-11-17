@@ -24,12 +24,21 @@ public class AddTopicCommandHandler implements CommandHandler {
 
 
     public void handle(AddTopicCommand command) {
+        Topic topic = doCommand(command);
+        raiseEvent(topic);
+    }
+
+    private Topic doCommand(AddTopicCommand command) {
         Topic topic = createTopic(command);
         topicsCollection.add(topic);
-        eventBus.post(new TopicAddedEvent(topic.getId()));
+        return topic;
     }
 
     private Topic createTopic(AddTopicCommand addTopicCommand) {
         return Topic.fromContent(addTopicCommand.getId(), addTopicCommand.getTitle(), addTopicCommand.getGoals());
+    }
+
+    private void raiseEvent(Topic topic) {
+        eventBus.post(new TopicAddedEvent(topic.getId()));
     }
 }

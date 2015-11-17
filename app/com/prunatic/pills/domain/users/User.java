@@ -1,6 +1,7 @@
 package com.prunatic.pills.domain.users;
 
 import com.prunatic.pills.domain.topics.Journey;
+import com.prunatic.pills.domain.topics.JourneyId;
 import com.prunatic.pills.domain.topics.Topic;
 
 import java.util.ArrayList;
@@ -28,9 +29,11 @@ public class User {
         return userId;
     }
 
-    public void subscribeTo(Topic topic) {
+    public Journey subscribesTo(Topic topic) {
         Journey journey = topic.prepareJourneyFor(userId);
         journeys.add(journey);
+
+        return journey;
     }
 
     @Override
