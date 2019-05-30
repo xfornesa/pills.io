@@ -14,7 +14,7 @@ After an small event storming workshop, it has been identified the following top
  Interesting domain events:
  - User has created an account => AccountCreated
  - User has removed his account => AccountRemoved
- - User has subscribed to topic => SubscriptionCreated
+ - User has subscribed to topic => UserSubscribedToTopic
  - Some pills have been scheduled => PillsScheduled 
  - Pill has been sent to user => PillSent
  - Pill has been read by user => PillRead
@@ -67,6 +67,7 @@ After an small event storming workshop, it has been identified the following top
 - ~~[Topics] Add a topic to the system~~
 - ~~[Topics] Setting up the journey of a topic (adding pills) ~~
 - [Subscriptions] Subscribe to topic
+- [Journey] User progress
 - [Scheduler] Schedule pills to sent
 - [Topics] Complete survey
 
